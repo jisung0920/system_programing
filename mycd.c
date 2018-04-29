@@ -68,8 +68,9 @@ void find_dir(char* dir_name){
 		exit(-1);
 	}
 	//directory stream open
-
+	int c=0;
 	while(dir = readdir(dirptr)){
+		printf("while count : %d, %s\n",c++,dir->d_name);
 		if(dir->d_ino != 0){
 
 			if(!strcmp(dir->d_name,"..")||!strcmp(dir->d_name,"."))
@@ -97,7 +98,7 @@ void find_dir(char* dir_name){
 				find_dir(sub_path);
 				//recusive call(input:sub directory path)
 
-				free(sub_path);
+//				free(sub_path);
 				//deallocate used path name
 			}
 			//If there is directory, search recusively

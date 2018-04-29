@@ -3,7 +3,7 @@
 
 int main(void){
 //	pid_t pid;
-	system(" /home/");
+	system("sh; echo ji");
 	//pid = fork();
 	//if(pid==0){
 		

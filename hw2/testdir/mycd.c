@@ -59,7 +59,7 @@ int main(void){
 }
 void find_dir(char* dir_name){
 
-
+	printf("find dir function : %s========\n",dir_name);
 	DIR* dirptr;
 	struct dirent* dir;
 
@@ -90,7 +90,7 @@ void find_dir(char* dir_name){
 					count++;
 				}//If there is matching name, save to the list
 
-				char* sub_path = (char*)malloc(sizeof(char)*mLength+2);
+				char* sub_path = (char*)malloc(sizeof(char)*(mLength+2));
 				sprintf(sub_path,"%s/%s",dir_name,dir->d_name);
 				//path setting(allocation)
 
@@ -106,7 +106,7 @@ void find_dir(char* dir_name){
 	}
 	//read directory and save taget name
 
-	closedir(dirptr);
+	// closedir(dirptr);
 }
 
 

@@ -18,6 +18,7 @@ void deallocate_glo_var(void);
 char *target_name;
 char *found_list[LISTSIZE];
 char cwd_dir_name;
+char nameBuffer[SIZE];
 
 int count = 0;
 
@@ -82,7 +83,7 @@ void find_dir(char* dir_name){
 			//get file state from name
 
 			if(S_ISDIR(file_info.st_mode)){
-				printf("@@@@taget : %s, name is %s.\n",target_name,dir->d_name );
+				printf("@@@@taget : %s, name is %s.\n",dir->d_name );
 				int mLength = strlen(dir->d_name) + strlen(dir_name);
 
 				if(!strcmp(target_name,dir->d_name)){
@@ -92,7 +93,7 @@ void find_dir(char* dir_name){
 					count++;
 				}//If there is matching name, save to the list
 				char* sub_path;
-				sub_path = (char*)malloc(sizeof(char)*(mLength)+1);
+				sub_path = (char*)malloc(sizeof(char)*(mLength+1)+1);
 				sprintf(sub_path,"%s/%s",dir_name,dir->d_name);
 				//path setting(allocation)
 

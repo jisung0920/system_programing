@@ -59,7 +59,8 @@ int main(void){
 }
 void find_dir(char* dir_name){
 
-
+	printf("find dir function : %s========\n",dir_name);
+	int v=1;
 	DIR* dirptr;
 	struct dirent* dir;
 
@@ -75,22 +76,23 @@ void find_dir(char* dir_name){
 			if(!strcmp(dir->d_name,"..")||!strcmp(dir->d_name,"."))
 				continue;
 			//directory except part - own or parent dir
-
+			printf("===v = %d and name : %s*\n",v++,dir->d_name);
 			struct stat file_info;
 			stat(dir->d_name, &file_info);
 			//get file state from name
 
 			if(S_ISDIR(file_info.st_mode)){
-
+				printf("@@@@taget : %s, name is %s.\n",target_name,dir->d_name );
 				int mLength = strlen(dir->d_name) + strlen(dir_name);
 
 				if(!strcmp(target_name,dir->d_name)){
-					found_list[count] = (char*)malloc(sizeof(char)*mLength+2);
+					printf("\n\nput into list %s\n",dir->d_name );
+					found_list[count] = (char*)malloc(sizeof(char)*(mLength+1)+1);
 					sprintf(found_list[count],"%s/%s",dir_name,dir->d_name);
 					count++;
 				}//If there is matching name, save to the list
-
-				char* sub_path = (char*)malloc(sizeof(char)*mLength+2);
+				char* sub_path;
+				sub_path = (char*)malloc(sizeof(char)*(mLength)+1);
 				sprintf(sub_path,"%s/%s",dir_name,dir->d_name);
 				//path setting(allocation)
 
@@ -107,6 +109,8 @@ void find_dir(char* dir_name){
 	//read directory and save taget name
 
 	closedir(dirptr);
+
+	printf("===========end dir function : %s\n",dir_name);
 }
 
 

@@ -2,6 +2,8 @@
 #include <sys/types.h>//
 #include <signal.h>
 #include <stdlib.h>//
+#include <unistd.h>
+#include <wait.h>
 
 int pid;
 static char *chdargv[] = {"p1","p2",(char*)0};
@@ -13,7 +15,7 @@ int main(int argc, char *argv[]){
 
   if(!(cpid1 = fork())){
     pid = cpid1 = getpid();
-    printf("\nCPID1 = %d\n");
+    printf("\nCPID1 = %d\n",cpid1);
     for(i=1;i<NSIG;i++)
       signal(i,SIG_IGN);
     signal(SIGINT,handler);
@@ -21,7 +23,7 @@ int main(int argc, char *argv[]){
     alarm((unsigned)2);
     for(;;)
       pause();
-    printf("--CPID1 (%d) terminates\n",cpid2 );////
+    printf("--CPID1 (%d) terminates\n",cpid1 );////
     exit(0);
   }
 
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]){
 
     pid = getpid();
     sleep(3);
-    printf("\nThis is parent process\n",pid );
+    printf("\nThis is parent process\n");
 
     for(i=1;i<NSIG;i++)
       signal(i,parent);

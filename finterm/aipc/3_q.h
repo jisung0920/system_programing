@@ -2,6 +2,9 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <errno.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 extern int errno;
 #define QKEY (key_t)0150 /*identifying key for queue*/
 #define QPERM 0660 /*permissions for queue*/

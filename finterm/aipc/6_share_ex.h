@@ -4,6 +4,9 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 #define SHMKEY1 (key_t)0x10 /*shared mem key*/
 #define SHMKEY2 (key_t)0x15 /*shared mem key*/
 #define SEMKEY (key_t)0x20 /*semaphore key*/
@@ -17,6 +20,6 @@ char d_buf[SIZ];
 /* function prototypes */
 int getseg(struct databuf **p1, struct databuf **p2);
 int getsem(void);
-int remove(void);
+int s_remove(void);
 void reader(int semid, struct databuf *buf1, struct databuf *buf2);
 void writer(int semid, struct databuf *buf1, struct databuf *buf2);
